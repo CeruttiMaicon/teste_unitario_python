@@ -8,44 +8,48 @@ print("Digite um numero para descobrir seus divisores")
 #recebe o input na variavel e o converte para numero inteiro
 
 # Comentado para execucao dos teste, mas aqui recebe os testes
-numero = int(input("Digite um numero: "))
+# nota1 = int(input("Digite a nota 1: "))
+# nota2 = int(input("Digite a nota 2: "))
+# nota3 = int(input("Digite a nota 3: "))
+# nota4 = int(input("Digite a nota 4: "))
 
-def divisores(numero):
-  array = []
+def media_notas(nota1, nota2, nota3, nota4):
+  if(nota1 < 0 or nota1 > 10 ):
+    return False  
+  if(nota2 < 0 or nota2 > 10):
+    return False  
+  if(nota3 < 0 or nota3 > 10):
+    return False  
+  if(nota4 < 0 or nota4 > 10):
+    return False  
   #faz as interacoes com o input digitado
-  for i in range(numero):
-    #verifica se o contador do numero eh diferente de 0
-    # se for 0 ele ignora o resultado
-    if i != 0:
-      #verifica se o resto de divissao eh igual a zero
-      #que identifica os numeros que sao divisiveis
-      if numero % i == 0:
-        #imprime os resultados dos numeros divisiveis 
-        #pelo numero  digitado
-        array.append(i) 
-  print(array)
-  return array
+  media = (nota1 + nota2 + nota3 + nota4) / 4
+
+  if(media == 5 or media == 6):
+    print('EM FINAL')
+    print(media)
+    return(0)
+  else:
+    if(media >= 7):
+      print('APROVADO')
+      print(media)
+      return 1
+    else:
+      print('REPROVADO')
+      print(media)
+      return -1
 
 #chama a funcao para o usuario executar um input
-divisores(numero)
+# media_notas(nota1, nota2, nota3, nota4)
 
 
 #classe de teste que chama e funcao e a executa
 #a segunda entrada (o array), é o resultado esperado pela funcao de teste
 class MyTest(unittest.TestCase):
   def test(self):
-    self.assertEqual(divisores(90), [1, 2, 3, 5, 6, 9, 10, 15, 18, 30])
+    self.assertEqual(media_notas(7, 2, 10, 9), 0)
+    self.assertEqual(media_notas(7, 2, 2, 2), -1)
+    self.assertEqual(media_notas(5, 5, 5, 5), 0)
 
 if __name__ == '__main__':
   unittest.main()
-
-
-## Este teste funciona
-
-# if(numero == 0):
-#   msg = 'O número zero é improprio para a função de divisores'
-#   assert False, msg
-
-# if(numero < 0):
-#   msg = 'Não pode ser passado como parametro um número negativo para encontrar seus divisores'
-#   assert False, msg
